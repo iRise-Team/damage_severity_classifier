@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 model = tf.keras.models.load_model("./dmgSev_vgg2.h5")
 BATCH_SIZE = 80
-IMG_Size = 300
+IMG_SIZE = 300
 category = ['little_or_none', 'mild', 'severe']
 
 @app.route("/")
@@ -22,7 +22,7 @@ def predict():
 
    # resize then convert to arrray
    img = Image.open(img.stream)
-   newsize = (IMG_Size, IMG_Size)
+   newsize = (IMG_SIZE, IMG_SIZE)
    img = img.resize(newsize)
    np_im = np.array(img)
    
