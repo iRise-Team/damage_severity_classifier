@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dmg_app">Aplikasi Deteksi Kerusakan Bangunan</string>
+    <string name="login">Masuk</string>
+    <string name="login_to_your_account">Masuk ke akun anda</string>
+    <string name="password">Kata Sandi</string>
+    <string name="dont_have">Belum memiliki akun? ·</string>
+    <string name="register_now">Daftar sekarang!</string>
+</resources>
