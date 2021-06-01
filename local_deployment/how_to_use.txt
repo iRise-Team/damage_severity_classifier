@@ -1,5 +1,0 @@
-1.	install python and pip
-2.	install dependencies in requirements.txt
-3.	download model then copy the .h5 file to this folder
-4.	then run server using: python run_server.py
-5.	to test the server, run make_request.py: python make_request.py
