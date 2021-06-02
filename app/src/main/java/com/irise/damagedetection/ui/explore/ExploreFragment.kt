@@ -1,44 +1,57 @@
 package com.irise.damagedetection.ui.explore
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.irise.damagedetection.databinding.FragmentExploreBinding
+import com.irise.damagedetection.dummy.Dummy
 
 class ExploreFragment : Fragment() {
 
-    private lateinit var exploreViewModel: ExploreViewModel
-    private var _binding: FragmentExploreBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var viewModel: ExploreViewModel
+    private lateinit var binding: FragmentExploreBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        exploreViewModel =
-            ViewModelProvider(this).get(ExploreViewModel::class.java)
-
-        _binding = FragmentExploreBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        exploreViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
-        return root
+        binding = FragmentExploreBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            viewModel = ViewModelProvider(
+                it,
+                ViewModelProvider.NewInstanceFactory()
+            )[ExploreViewModel::class.java]
+        }
+
+        val listMovie = viewModel.getList()
+        setupRecyclerView(listMovie)
+    }
+
+    private fun setupRecyclerView(data: List<Dummy>) {
+        binding.rvExplore.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ExploreAdapter()
+        }.also {
+            it.adapter.let { adapter ->
+                when (adapter) {
+                    is ExploreAdapter -> {
+                        adapter.setList(data)
+                    }
+                }
+            }
+        }
     }
 }

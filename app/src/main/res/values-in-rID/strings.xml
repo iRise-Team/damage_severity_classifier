@@ -13,4 +13,10 @@
     <string name="explore">Eksplor</string>
     <string name="tap">Klik untuk Memilih Gambar</string>
     <string name="result">Hasil akan ditampilkan disini</string>
+    <string name="location">Lokasi</string>
+    <string name="image">gambar</string>
+    <string name="time">Waktu</string>
+    <string name="none">Kerusakan: Kecil atau Tidak Ada</string>
+    <string name="mild">Kerusakan: Menengah</string>
+    <string name="severe">Kerusakan: Parah</string>
 </resources>

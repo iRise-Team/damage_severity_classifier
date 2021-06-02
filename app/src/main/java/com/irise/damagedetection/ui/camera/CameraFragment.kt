@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.irise.damagedetection.R
 import com.irise.damagedetection.databinding.FragmentCameraBinding
 import com.irise.damagedetection.online.IApi
 import com.irise.damagedetection.online.UploadRequestBody
@@ -124,16 +125,15 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
                     result = it.toString().subSequence(21,22).toString()
                     result = when (result) {
                         "0" -> {
-                            "Little or None"
+                            resources.getString(R.string.none)
                         }
                         "1" -> {
-                            "Mild"
+                            resources.getString(R.string.mild)
                         }
                         else -> {
-                            "Severe"
+                            resources.getString(R.string.severe)
                         }
                     }
-                    binding.root.snackbar("Damage severity: $result")
                     binding.label.text = result
                     binding.progressBar.progress = 100
                 }

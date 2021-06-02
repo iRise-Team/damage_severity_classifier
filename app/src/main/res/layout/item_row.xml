@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    card_view:cardBackgroundColor="#f5f5f5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="2dp"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:padding="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_user"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@id/img_user"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="@string/username" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_username"
+            android:layout_marginHorizontal="8dp"
+            android:layout_toEndOf="@id/img_user"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="?attr/colorOnPrimary"
+            tools:text="@string/location" />
+
+        <ImageView
+            android:id="@+id/img_display"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="?attr/colorOnPrimary"
+            android:layout_below="@+id/img_user"
+            android:src="@drawable/cursor_color"
+            android:contentDescription="@string/image" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_display">
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="?attr/colorOnPrimary"
+                android:textStyle="bold"
+                tools:text="@string/result" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="?attr/colorOnPrimary"
+                tools:ignore="RtlHardcoded"
+                tools:text="@string/time" />
+        </FrameLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
