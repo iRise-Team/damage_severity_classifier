@@ -13,4 +13,11 @@
     <string name="register_now">Register now!</string>
     <string name="have_an_account">Already have an account?</string>
     <string name="register">Register</string>
+    <string name="upload">Upload</string>
+    <string name="profile">Profile</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="explore">Explore</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="tap">Tap to Select Image</string>
+    <string name="result">Result will be displayed here</string>
 </resources>

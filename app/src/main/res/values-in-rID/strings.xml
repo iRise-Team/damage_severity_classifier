@@ -8,4 +8,9 @@
     <string name="register_now">Daftar sekarang!</string>
     <string name="have_an_account" translatable="false">Sudah memiliki akun?</string>
     <string name="register" translatable="false">Daftar</string>
+    <string name="upload">Unggah</string>
+    <string name="profile">Profil</string>
+    <string name="explore">Eksplor</string>
+    <string name="tap">Klik untuk Memilih Gambar</string>
+    <string name="result">Hasil akan ditampilkan disini</string>
 </resources>

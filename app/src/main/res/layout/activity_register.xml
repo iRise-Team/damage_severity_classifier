@@ -44,8 +44,8 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="#888"
-            android:text="@string/register_now" />
+            android:text="@string/register_now"
+            android:textColor="#888" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -138,29 +138,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginVertical="30dp">
+            android:layout_marginVertical="30dp"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/tv_account"
                 android:layout_width="wrap_content"
-                android:textSize="14sp"
                 android:layout_height="wrap_content"
-                android:textColor="#888"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/have_an_account" />
+                android:text="@string/have_an_account"
+                android:textColor="#888"
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="14sp"
-                android:text="@string/login_to_your_account"
-                android:paddingStart="5dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/holo_blue_dark"
-                android:fontFamily="@font/poppins_regular"
                 android:layout_toEndOf="@+id/tv_account"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_horizontal"
+                android:paddingStart="5dp"
+                android:text="@string/login_to_your_account"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 tools:ignore="RtlSymmetry" />
         </RelativeLayout>
 
