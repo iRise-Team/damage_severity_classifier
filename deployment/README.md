@@ -1,4 +1,4 @@
-# How to deploy to GCP virtual machine:
+# How to deploy ML model to GCP virtual machine using Flask:
 
 1.	install python and pip (python version 3.8)
 2.	install dependencies in requirements.txt using: 'sudo pip3 install -r requirements.txt'
