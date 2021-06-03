@@ -19,31 +19,54 @@
 
         <TextView
             android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins_regular"
-            android:textSize="20sp"
             android:text="@string/result"
             android:textColor="?attr/colorOnPrimary"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_marginHorizontal="24dp"
-            app:srcCompat="@drawable/ic_baseline_camera_alt_24"
-            android:contentDescription="@string/tap" />
+            android:contentDescription="@string/tap"
+            app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorOnPrimary"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/tap"
-            android:textSize="20sp" />
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btn_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/cursor_color"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/open_camera"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:ignore="ButtonStyle" />
+            
+            <Button
+                android:id="@+id/btn_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/cursor_color"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/select_from_gallery"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -55,15 +78,16 @@
 
         <Button
             android:id="@+id/button_upload"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_marginHorizontal="50dp"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:background="@drawable/blue_fill__rounded_color"
             android:layout_height="wrap_content"
-            android:text="@string/upload" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_fill__rounded_color"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/upload"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

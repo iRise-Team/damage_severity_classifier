@@ -1,9 +1,13 @@
 package com.irise.damagedetection.ui.camera
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,20 +28,18 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
+
 @Suppress("DEPRECATION")
 class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
-    private var selectedImageUri: Uri? = null
-
     private lateinit var cameraViewModel: CameraViewModel
     private var _binding: FragmentCameraBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private var selectedImageUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +48,7 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
     ): View {
         cameraViewModel =
             ViewModelProvider(this).get(CameraViewModel::class.java)
-
+        result = resources.getString(R.string.result)
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -59,12 +61,26 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
         cameraViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
-        binding.imageView.setOnClickListener {
+
+        binding.btnGallery.setOnClickListener {
             openImageChooser()
+        }
+
+        binding.btnCamera.setOnClickListener {
+            openCamera()
         }
 
         binding.buttonUpload.setOnClickListener {
             uploadImage()
+        }
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun openCamera() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(requireContext().packageManager)?.also {
+                startActivityForResult(takePictureIntent, REQUEST_CODE_CAMERA)
+            }
         }
     }
 
@@ -85,20 +101,40 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
                     selectedImageUri = data?.data
                     binding.imageView.setImageURI(selectedImageUri)
                 }
+                REQUEST_CODE_CAMERA -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    selectedImageUri = getImageUri(requireContext(), imageBitmap)
+                    binding.imageView.setImageURI(selectedImageUri)
+                }
             }
         }
     }
 
+    private fun getImageUri(context: Context, image: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            context.contentResolver,
+            image,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
+
     private fun uploadImage() {
         if (selectedImageUri == null) {
-            binding.root.snackbar("Select an Image First")
+            binding.root.snackbar(resources.getString(R.string.select_image_first))
             return
         }
         val parcelFileDescriptor =
             context?.contentResolver?.openFileDescriptor(selectedImageUri!!, "r", null) ?: return
 
         val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
-        val file = File(requireContext().cacheDir, requireContext().contentResolver.getFileName(selectedImageUri!!))
+        val file = File(
+            requireContext().cacheDir,
+            requireContext().contentResolver.getFileName(selectedImageUri!!)
+        )
         val outputStream = FileOutputStream(file)
         inputStream.copyTo(outputStream)
 
@@ -122,7 +158,7 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
                 response: Response<UploadResponse>
             ) {
                 response.body()?.let {
-                    result = it.toString().subSequence(21,22).toString()
+                    result = it.toString().subSequence(21, 22).toString()
                     result = when (result) {
                         "0" -> {
                             resources.getString(R.string.none)
@@ -148,10 +184,12 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
 
     companion object {
         const val REQUEST_CODE_PICK_IMAGE = 101
+        const val REQUEST_CODE_CAMERA = 1
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        result = resources.getString(R.string.result)
         _binding = null
     }
 }

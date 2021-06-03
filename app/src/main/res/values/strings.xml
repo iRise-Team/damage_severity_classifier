@@ -26,4 +26,7 @@
     <string name="none">Damage: Little or None</string>
     <string name="mild">Damage: Mild</string>
     <string name="severe">Damage: Severe</string>
+    <string name="select_from_gallery">Select from gallery</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="select_image_first">Select an image first</string>
 </resources>

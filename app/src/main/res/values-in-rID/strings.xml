@@ -19,4 +19,7 @@
     <string name="none">Kerusakan: Kecil atau Tidak Ada</string>
     <string name="mild">Kerusakan: Menengah</string>
     <string name="severe">Kerusakan: Parah</string>
+    <string name="select_from_gallery">Pilih dari galeri</string>
+    <string name="open_camera">Buka Kamera</string>
+    <string name="select_image_first">Pilih gambar terlebih dahulu</string>
 </resources>
