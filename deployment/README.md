@@ -1,3 +1,5 @@
+#How to deploy to GCP virtual machine:
+
 1.	install python and pip (python version 3.8)
 2.	install dependencies in requirements.txt using: 'sudo pip3 install -r requirements.txt'
 3.	download model then copy the .h5 file to this folder
