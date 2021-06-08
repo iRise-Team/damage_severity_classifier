@@ -22,4 +22,9 @@
     <string name="select_from_gallery">Pilih dari galeri</string>
     <string name="open_camera">Buka Kamera</string>
     <string name="select_image_first">Pilih gambar terlebih dahulu</string>
+    <string name="fill">Mohon diisi terlebih dahulu</string>
+    <string name="register_failed">Pendaftaran gagal, coba lagi nanti</string>
+    <string name="register_success">Pendaftaran berhasil</string>
+    <string name="login_failed">Login gagal</string>
+    <string name="login_success">Login sukses</string>
 </resources>

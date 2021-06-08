@@ -30,4 +30,9 @@
     <string name="open_camera">Open Camera</string>
     <string name="select_image_first">Select an image first</string>
     <string name="splash" translatable="false">splash</string>
+    <string name="fill">Please fill this column first</string>
+    <string name="register_failed">Registration failed, please try again later</string>
+    <string name="register_success">Registration success</string>
+    <string name="login_failed">Login failed</string>
+    <string name="login_success">Login success</string>
 </resources>

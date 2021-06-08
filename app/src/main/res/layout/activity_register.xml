@@ -94,7 +94,7 @@
             android:background="@drawable/blue_border_rounded_cornwe">
 
             <EditText
-                android:id="@+id/input_user"
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/iv_email"
@@ -160,6 +160,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
