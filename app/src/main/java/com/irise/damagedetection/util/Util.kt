@@ -5,7 +5,6 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
-import com.irise.damagedetection.R
 
 object Util {
     var result: String = ""
@@ -33,4 +32,7 @@ object Util {
         }
         return name
     }
+
+    const val TAG = "FirestoreDatabaseTag"
+    const val PRODUCTS_REF = "products"
 }

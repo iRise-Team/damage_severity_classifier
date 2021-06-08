@@ -14,8 +14,9 @@
         android:theme="@style/Theme.DamageDetectionApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -44,5 +45,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

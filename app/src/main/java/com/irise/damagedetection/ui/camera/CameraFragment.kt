@@ -1,17 +1,16 @@
 package com.irise.damagedetection.ui.camera
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.irise.damagedetection.R
@@ -28,17 +27,16 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-
 
 @Suppress("DEPRECATION")
 class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
     private lateinit var cameraViewModel: CameraViewModel
     private var _binding: FragmentCameraBinding? = null
     private val binding get() = _binding!!
+    private var mUri: Uri? = null
     private var selectedImageUri: Uri? = null
 
     override fun onCreateView(
@@ -75,13 +73,24 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
         }
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
     private fun openCamera() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(requireContext().packageManager)?.also {
-                startActivityForResult(takePictureIntent, REQUEST_CODE_CAMERA)
-            }
+        val capturedImage = File(requireContext().externalCacheDir, "Photo.jpg")
+        if (capturedImage.exists()) {
+            capturedImage.delete()
         }
+        capturedImage.createNewFile()
+        mUri = if (Build.VERSION.SDK_INT >= 24) {
+            FileProvider.getUriForFile(
+                requireContext(), "com.irise.damagedetection.provider",
+                capturedImage
+            )
+        } else {
+            Uri.fromFile(capturedImage)
+        }
+
+        val intent = Intent("android.media.action.IMAGE_CAPTURE")
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri)
+        startActivityForResult(intent, REQUEST_CODE_CAMERA)
     }
 
     private fun openImageChooser() {
@@ -102,24 +111,11 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
                     binding.imageView.setImageURI(selectedImageUri)
                 }
                 REQUEST_CODE_CAMERA -> {
-                    val imageBitmap = data?.extras?.get("data") as Bitmap
-                    selectedImageUri = getImageUri(requireContext(), imageBitmap)
+                    selectedImageUri = mUri
                     binding.imageView.setImageURI(selectedImageUri)
                 }
             }
         }
-    }
-
-    private fun getImageUri(context: Context, image: Bitmap): Uri? {
-        val bytes = ByteArrayOutputStream()
-        image.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            context.contentResolver,
-            image,
-            "Title",
-            null
-        )
-        return Uri.parse(path)
     }
 
     private fun uploadImage() {

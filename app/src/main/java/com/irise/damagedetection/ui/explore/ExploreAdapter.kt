@@ -1,7 +1,6 @@
 package com.irise.damagedetection.ui.explore
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +44,7 @@ class ExploreAdapter : RecyclerView.Adapter<ExploreAdapter.ExploreViewHolder>() 
                     }
                     else ->
                         itemView.context.resources.getString(R.string.severe)
-                    }
+                }
                 tvUsername.text = data.username
                 tvLocation.text = data.location
                 tvTime.text = data.time
