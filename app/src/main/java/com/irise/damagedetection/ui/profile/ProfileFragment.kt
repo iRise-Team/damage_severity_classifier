@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.irise.damagedetection.LoginActivity
 import com.irise.damagedetection.databinding.FragmentProfileBinding
-import com.irise.damagedetection.util.Util.TAG
 
 class ProfileFragment : Fragment() {
 
@@ -44,24 +43,25 @@ class ProfileFragment : Fragment() {
         val user = auth.currentUser
         val reference = dbReference?.child(user?.uid!!)
 
-        with(binding){
+        with(binding) {
             tvEmail.text = user?.email
 
-            reference?.addValueEventListener(object : ValueEventListener{
+            reference?.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     tvName.text = snapshot.child("name").value.toString()
                     tvUsername.text = snapshot.child("username").value.toString()
                 }
 
-                override fun onCancelled(error: DatabaseError){
+                override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(requireContext(), "Database Error", Toast.LENGTH_LONG).show()
                 }
             })
-            btnLogout.setOnClickListener{
+            btnLogout.setOnClickListener {
                 auth.signOut()
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
+                activity?.finish()
             }
-            btnExit.setOnClickListener{
+            btnExit.setOnClickListener {
                 activity?.finish()
             }
         }

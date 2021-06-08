@@ -56,7 +56,8 @@ class RegisterActivity : AppCompatActivity() {
                             if (it.isSuccessful) {
                                 val currentUsers = auth.currentUser
                                 val currentDb = dbReference?.child(currentUsers?.uid!!)
-                                currentDb?.child("username")?.setValue(inputUsername.text.toString())
+                                currentDb?.child("username")
+                                    ?.setValue(inputUsername.text.toString())
                                 currentDb?.child("name")?.setValue(inputName.text.toString())
                                 Toast.makeText(
                                     this@RegisterActivity,

@@ -113,6 +113,7 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
                     binding.imageView.setImageURI(selectedImageUri)
                 }
                 REQUEST_CODE_CAMERA -> {
+                    binding.imageView.setImageDrawable(null)
                     selectedImageUri = mUri
                     binding.imageView.setImageURI(selectedImageUri)
                 }
