@@ -70,5 +70,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     implementation platform('com.google.firebase:firebase-bom:28.0.0')
+    compile 'com.github.scottyab:showhidepasswordedittext:0.8'
 
 }
