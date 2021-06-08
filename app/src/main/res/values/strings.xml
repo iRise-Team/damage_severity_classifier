@@ -35,4 +35,7 @@
     <string name="register_success">Registration success</string>
     <string name="login_failed">Login failed</string>
     <string name="login_success">Login success</string>
+    <string name="name">Name</string>
+    <string name="logout" translatable="false">Logout</string>
+    <string name="exit">Exit From Application</string>
 </resources>

@@ -33,6 +33,5 @@ object Util {
         return name
     }
 
-    const val TAG = "FirestoreDatabaseTag"
-    const val PRODUCTS_REF = "products"
+    const val TAG = "RealtimeDatabaseTag"
 }

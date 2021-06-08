@@ -19,6 +19,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
         login()
 
         binding.tvNext.setOnClickListener {

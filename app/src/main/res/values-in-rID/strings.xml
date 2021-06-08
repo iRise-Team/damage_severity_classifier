@@ -27,4 +27,6 @@
     <string name="register_success">Pendaftaran berhasil</string>
     <string name="login_failed">Login gagal</string>
     <string name="login_success">Login sukses</string>
+    <string name="name">Nama Lengkap</string>
+    <string name="exit">Keluar Dari Aplikasi</string>
 </resources>

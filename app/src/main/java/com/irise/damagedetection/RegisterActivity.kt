@@ -12,8 +12,8 @@ import com.irise.damagedetection.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    var dbReference: DatabaseReference? = null
-    var db: FirebaseDatabase? = null
+    private var dbReference: DatabaseReference? = null
+    private var db: FirebaseDatabase? = null
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +33,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        binding.tvRegister.setOnClickListener {
-            with(binding) {
+        with(binding) {
+            tvRegister.setOnClickListener {
                 when {
                     TextUtils.isEmpty(inputEmail.text.toString()) -> {
                         inputEmail.error = resources.getString(R.string.fill)
@@ -54,13 +54,10 @@ class RegisterActivity : AppCompatActivity() {
                     )
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
-                                val currentUser = auth.currentUser
-                                val currentDb = dbReference?.child(currentUser?.uid!!)
-                                currentDb?.child("email")?.setValue(inputEmail.text.toString())
-                                currentDb?.child("username")
-                                    ?.setValue(inputUsername.text.toString())
-                                currentDb?.child("password")
-                                    ?.setValue(inputPassword.text.toString())
+                                val currentUsers = auth.currentUser
+                                val currentDb = dbReference?.child(currentUsers?.uid!!)
+                                currentDb?.child("username")?.setValue(inputUsername.text.toString())
+                                currentDb?.child("name")?.setValue(inputName.text.toString())
                                 Toast.makeText(
                                     this@RegisterActivity,
                                     resources.getString(R.string.register_success),
@@ -77,8 +74,6 @@ class RegisterActivity : AppCompatActivity() {
                         }
                 }
             }
-
         }
-
     }
 }

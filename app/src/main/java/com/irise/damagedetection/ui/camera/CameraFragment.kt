@@ -60,16 +60,18 @@ class CameraFragment : Fragment(), UploadRequestBody.UploadCallback {
             textView.text = it
         })
 
-        binding.btnGallery.setOnClickListener {
-            openImageChooser()
-        }
+        binding.apply {
+            btnGallery.setOnClickListener {
+                openImageChooser()
+            }
 
-        binding.btnCamera.setOnClickListener {
-            openCamera()
-        }
+            btnCamera.setOnClickListener {
+                openCamera()
+            }
 
-        binding.buttonUpload.setOnClickListener {
-            uploadImage()
+            buttonUpload.setOnClickListener {
+                uploadImage()
+            }
         }
     }
 
