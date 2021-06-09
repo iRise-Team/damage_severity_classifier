@@ -38,7 +38,7 @@ def predict():
    response_json = {
        "label":str(label)
    }
-
+   print('category:', label)
    return json.dumps(response_json)
 
 if __name__ == '__main__':
