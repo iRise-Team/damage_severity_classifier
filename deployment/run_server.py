@@ -36,7 +36,7 @@ def predict():
    ctg = category[label]
 
    response_json = {
-       "label":ctg
+       "label":str(label)
    }
 
    return json.dumps(response_json)
